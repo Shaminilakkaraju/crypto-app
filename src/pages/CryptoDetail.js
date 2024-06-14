@@ -15,12 +15,14 @@ const CryptoDetail = () => {
   const chartInstance = useRef(null); 
 
   useEffect(() => {
-    const getCryptoDetails = async () => {
+    const fetchData = async () => {
+      setLoading(true);
       try {
-        const data = await fetchCryptoDetails(id);
-        setCrypto(data);
+        const detailsData = await fetchCryptoDetails(id);
+        setCrypto(detailsData);
         const historyData = await fetchCryptoHistory(id);
         setHistory(historyData);
+        setError(null);
       } catch (err) {
         setError('Failed to fetch cryptocurrency details. Please try again later.');
       } finally {
@@ -28,11 +30,11 @@ const CryptoDetail = () => {
       }
     };
 
-    getCryptoDetails();
+    fetchData();
   }, [id]);
 
   useEffect(() => {
-    if (chartContainer.current) {
+    if (crypto && chartContainer.current) {
       if (chartInstance.current) {
         chartInstance.current.destroy();
       }
@@ -54,7 +56,7 @@ const CryptoDetail = () => {
           plugins: {
             tooltip: {
               callbacks: {
-                label: (context) => `Price: ₹${context.raw.toFixed(2)}`, 
+                label: (context) => `Price: ₹${context.raw.toFixed(2)}`,
               },
             },
           },
@@ -68,20 +70,20 @@ const CryptoDetail = () => {
             y: {
               beginAtZero: true,
               ticks: {
-                callback: (value) => `₹${value.toFixed(2)}`, 
+                callback: (value) => `₹${value.toFixed(2)}`,
               },
             },
           },
         },
       });
     }
-  }, [history]);
+  }, [crypto, history]);
 
   if (loading) return <CircularProgress />;
   if (error) return <Alert severity="error">{error}</Alert>;
 
   return (
-    <Container className="container">
+    <Container>
       {crypto && (
         <>
           <Typography variant="h3" component="h1" gutterBottom>{crypto.name}</Typography>
@@ -90,12 +92,12 @@ const CryptoDetail = () => {
               <Card className="card">
                 <CardContent className="cardContent">
                   <Typography variant="h5" gutterBottom>Cryptocurrency Details</Typography>
-                  <Typography variant="body1" gutterBottom><strong>Symbol:</strong> {crypto.symbol.toUpperCase()}</Typography>
+                  <Typography variant="body1" gutterBottom><strong>Symbol:</strong> {crypto.symbol}</Typography>
                   <Typography variant="body1" gutterBottom><strong>Price:</strong> ₹{crypto.current_price}</Typography>
                   <Typography variant="body1" gutterBottom><strong>Market Cap:</strong> ₹{crypto.market_cap}</Typography>
                   <Typography variant="body1" gutterBottom><strong>24h High:</strong> ₹{crypto.high_24h}</Typography>
                   <Typography variant="body1" gutterBottom><strong>24h Low:</strong> ₹{crypto.low_24h}</Typography>
-                  <Typography variant="body1" gutterBottom><strong>24h Change:</strong> ₹{crypto.price_change_percentage_24h}%</Typography>
+                  <Typography variant="body1" gutterBottom><strong>24h Change:</strong> {crypto.price_change_percentage_24h}%</Typography>
                   <Typography variant="body1" gutterBottom><strong>Total Volume:</strong> ₹{crypto.total_volume}</Typography>
                 </CardContent>
               </Card>
