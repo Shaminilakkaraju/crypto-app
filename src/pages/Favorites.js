@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Typography, Grid, Card, CardContent, Button } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt  } from '@fortawesome/free-solid-svg-icons';
 
 const Favorites = ({ favorites, setFavorites }) => {
   const handleRemoveFavorite = (id) => {
@@ -31,7 +31,7 @@ const Favorites = ({ favorites, setFavorites }) => {
                     variant="contained"
                     color="secondary"
                     onClick={() => handleRemoveFavorite(crypto.id)}
-                    startIcon={<FontAwesomeIcon icon={faStar} />}
+                    startIcon={<FontAwesomeIcon icon={faTrashAlt} />}
                     className="button"
                   >
                     Remove from Favorites

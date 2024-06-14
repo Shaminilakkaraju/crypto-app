@@ -128,6 +128,27 @@ body {
   transform: translateY(-3px);
 }
 
+.footer {
+  background-color: #3f51b5;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 1rem;
+}
+
+.footer a:hover {
+  color: #303f9f;
+}
+
 @media (max-width: 768px) {
   .home-buttons {
     flex-direction: column;
