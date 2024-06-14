@@ -1,0 +1,156 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  line-height: 1.6;
+  color: #333;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #3f51b5;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.headerLogo {
+  text-decoration: none;
+  color: white;
+}
+
+.headerTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+}
+
+.headerIcons {
+  display: flex;
+  gap: 1rem;
+}
+
+.headerIcon {
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.headerIcon:hover {
+  color: #020f5b;
+}
+
+.searchBar {
+  margin-left: 1rem;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s;
+}
+
+.link:hover {
+  color: #1976d2;
+}
+
+.crypto-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.crypto-detail {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+.button {
+  margin-top: 1rem;
+  background-color: #1976d2;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #1565c0;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cardContent {
+  flex-grow: 1;
+}
+
+.chartContainer {
+  height: 400px;
+}
+
+.home-container {
+  text-align: center;
+  padding: 2rem;
+}
+
+.home-buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.home-button {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.home-button:hover {
+  background-color: #303f9f;
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .home-buttons {
+    flex-direction: column;
+  }
+
+  .headerIcons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .headerIcon {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .headerTitle {
+    font-size: 1.25rem;
+  }
+}
